@@ -1,4 +1,9 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
@@ -30,15 +35,21 @@ export class UserService {
         email: user.email,
       };
     } catch (err) {
+      if (
+        err.code === '23505' &&
+        err.constraint === 'UQ_e12875dfb3b1d92d7d7c5377e22'
+      ) {
+        throw new ConflictException('Email already exists');
+      }
       throw new BadRequestException(err.message);
     }
   }
 
   async findUserByEmail(email: string): Promise<User> {
-    try {
-      return this.userRepository.findOneBy({ email });
-    } catch (err) {
-      throw new NotFoundException(err.message);
+    const user = await this.userRepository.findOneBy({ email });
+    if (!user) {
+      throw new NotFoundException('User not found');
     }
+    return user;
   }
 }
