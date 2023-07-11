@@ -57,7 +57,7 @@ describe('AuthService', () => {
         loginDto.password,
       );
       expect((authService as any).generateJwtToken).toHaveBeenCalledWith(user);
-      expect(result).toEqual({ statusCode: 200, token: 'token' });
+      expect(result).toEqual({ statusCode: 201, token: 'token' });
     });
 
     it('should throw UnauthorizedException if login fails', async () => {

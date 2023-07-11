@@ -10,7 +10,7 @@ export class LoginResDto {
   @IsString()
   token: string;
 
-  @ApiProperty({ example: 200, description: 'Response status code' })
+  @ApiProperty({ example: 201, description: 'Response status code' })
   @IsNumber()
   statusCode: number;
 }

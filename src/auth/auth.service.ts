@@ -20,7 +20,7 @@ export class AuthService {
       throw new UnauthorizedException('Invalid credentials');
     }
     const token = this.generateJwtToken(user);
-    return { statusCode: 200, token };
+    return { statusCode: 201, token };
   }
 
   async getMe(email: string): Promise<GetMeResDto> {
