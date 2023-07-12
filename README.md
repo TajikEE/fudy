@@ -1,7 +1,7 @@
 ## Description
 
 Simple api service for creating and authenticating user.
-Swagger docs can be viewed here: http://localhost:4005/docs, and it is a protected route as well. Use the SWAGGER_DOC_USER and SWAGGER_DOC_PASSWORD to view it.
+Swagger docs can be viewed here: http://localhost:4005/docs, and it is a protected route as well. Use the `SWAGGER_DOC_USER` and `SWAGGER_DOC_PASSWORD` from .env.example to view it.
 
 ## Running the app on Docker
 
